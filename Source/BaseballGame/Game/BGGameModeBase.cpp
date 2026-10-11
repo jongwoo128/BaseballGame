@@ -148,6 +148,9 @@ void ABGGameModeBase::BeginPlay()
 	Super::BeginPlay();
 	// 만들어진 정답 번호 저장
 	SecretNumberString = GenerateSecretNumber();
+
+	// 시연 영상 촬영에 필요시 답을 Server창에서 Log로 볼 수 있는 함수
+	// UE_LOG(LogTemp, Warning, TEXT("[게임 시작] 정답: %s"), *SecretNumberString);
 }
 
 // Client에서 Server RPC인 PrintChatMessageString()를 호출하여 사용하도록 할 것임.
@@ -249,6 +252,9 @@ void ABGGameModeBase::ResetGame()
 {
 	// Reset시 정답 새로 만들어서 저장
 	SecretNumberString = GenerateSecretNumber();
+
+	// 시연 영상 촬영에 필요시 답을 Server창에서 Log로 볼 수 있는 함수
+	// UE_LOG(LogTemp, Warning, TEXT("[게임 리셋] 새 정답: %s"), *SecretNumberString);
 
 	// 모든 Player들을 순회하여 현재 시도 횟수 초기화.
 	for (const auto& BGPlayerController : AllPlayerControllers)
